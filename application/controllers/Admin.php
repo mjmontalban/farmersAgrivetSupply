@@ -35,18 +35,21 @@ class Admin extends MY_Controller{
          )
      );
 
-     $data["items"] = $this->universal->get(
-        false,
-        "items",
-        "*",
-        "all"
-    );
-     $data["main"] = 'items';
+     
      $this->renderPage("admin/addItems",$data);
 
     }
 
-    public function getCategories(){
+    public function itemList(){
+        $data["items"] = $this->universal->get(
+            false,
+            "items",
+            "*",
+            "all"
+        );
+         $data["main"] = 'itemlist';
+
+     $this->renderPage("admin/itemList",$data);
 
     }
 

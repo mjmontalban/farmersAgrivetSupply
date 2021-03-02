@@ -238,14 +238,33 @@
             <ul class="nav nav-treeview">
             <li class="nav-item">
             <a href="<?php echo base_url("admin/items"); ?>" class="nav-link">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>
+                Add Items
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url("admin/bulkItems"); ?>" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                Bulk Upload Items
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <a href="<?php echo base_url("admin/itemList"); ?>" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>
               <p>
                 View Items
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
+        
+          
           </li>
-              
             </ul>
           </li>
           
