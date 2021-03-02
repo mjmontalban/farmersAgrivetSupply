@@ -4,5 +4,9 @@ $(document).ready(function(){
       'responsive' : true
   });
 
+  var item = $("#itemTable").DataTable({
+    'responsive' : true
+});
+
 
 });

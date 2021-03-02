@@ -24,7 +24,18 @@ class Admin extends MY_Controller{
         $this->renderPage("admin/addCategory",$data);
     }
 
-    public function addItems(){
+    public function items(){
+     $data["categories"] = $this->universal->get(
+         false,
+         "category",
+         "*",
+         "all",
+         array(
+             "status" => 1
+         )
+     );
+     $data["main"] = 'items';
+     $this->renderPage("admin/addItems",$data);
 
     }
 
