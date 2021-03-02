@@ -38,5 +38,16 @@
 <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url(); ?>dist/js/pages/dashboard2.js"></script>
+
+<?php if($main == 'addCategory'): ?>
+  <script src="<?php echo base_url(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/custom.js"></script>
+
+<?php endif; ?>
 </body>
 </html>

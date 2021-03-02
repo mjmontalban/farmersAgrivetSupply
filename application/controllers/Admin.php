@@ -9,11 +9,19 @@ class Admin extends MY_Controller{
     }
 
     public function dashboard(){
-        $this->renderPage("admin/dashboard",$data = array());
+        $data["main"] = 'dashboard';
+        $this->renderPage("admin/dashboard",$data);
     }
 
     public function addCategory(){
-
+        $data["categories"] = $this->universal->get(
+            false,
+            "category",
+            "*",
+            "all"
+        );
+        $data["main"] = 'addCategory';
+        $this->renderPage("admin/addCategory",$data);
     }
 
     public function addItems(){
@@ -24,6 +32,21 @@ class Admin extends MY_Controller{
 
     }
 
+    public function insertCategory(){
+        $post = $this->input->post();
+        $insert = $this->universal->insert(
+          "category",
+          array(
+              "category_name" => $post["category_name"],
+              "status" => $post["status"],
+              "add_date" => date("Y-m-d H:i:s")
+          )
+        );
+        if($insert){
+            $this->session->set_flashdata("message","Inserted Succesfully!");
+            redirect("admin/addCategory");
+        }
+    }
     public function getItems(){
         
     }
