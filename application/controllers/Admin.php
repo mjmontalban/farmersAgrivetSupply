@@ -34,6 +34,13 @@ class Admin extends MY_Controller{
              "status" => 1
          )
      );
+
+     $data["items"] = $this->universal->get(
+        false,
+        "items",
+        "*",
+        "all"
+    );
      $data["main"] = 'items';
      $this->renderPage("admin/addItems",$data);
 
@@ -58,7 +65,22 @@ class Admin extends MY_Controller{
             redirect("admin/addCategory");
         }
     }
-    public function getItems(){
-        
+    public function insertItems(){
+        $post = $this->input->post();
+        $insert = $this->universal->insert(
+          "items",
+          array(
+              "item_name" => $post["item_name"],
+              "category_id" => $post["category"],
+              "description" => $post["description"],
+              "quantity" => $post["quantity"],
+              "item_price" => $post["price"],
+              "add_date" => date("Y-m-d H:i:s")
+          )
+        );
+        if($insert){
+            $this->session->set_flashdata("message","Inserted Succesfully!");
+            redirect("admin/items");
+        }
     }
 }

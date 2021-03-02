@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>General Form</h1>
+            <h1>Items</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
+              <li class="breadcrumb-item active">Items</li>
             </ol>
           </div>
         </div>
@@ -45,7 +45,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Select Category</label>
-                    <select name="status" id="" class="form-control" required>
+                    <select name="category" id="" class="form-control" required>
                         <?php foreach($categories as $key => $value): ?>
                            <option value="<?php echo $value->id; ?>"><?php echo $value->category_name; ?></option>
                         <?php endforeach; ?>
@@ -53,7 +53,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Description</label>
-                    <input type="text" class="form-control" name="discription" required>
+                    <input type="text" class="form-control" name="description" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Quantity</label>
@@ -93,11 +93,22 @@
                   <thead>
                     <th>Item Name</th>
                     <th>Discription</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
                     <th>Date Added</th>
                     <th>Action</th>
                   </thead>
                   <tbody>
-                    
+                  <?php foreach($items as $key => $value): ?>
+                        <tr>
+                           <td><?php echo $value->item_name; ?></td>
+                           <td><?php echo $value->description; ?></td>
+                           <td><?php echo $value->quantity; ?></td>
+                           <td><?php echo $value->item_price; ?></td>
+                           <td><?php echo $value->add_date; ?></td>
+                           <td><button data-id="<?php echo $value->id; ?>" class="btn btn-sm btn-primary">EDIT</button></td>
+                        </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
