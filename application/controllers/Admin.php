@@ -129,4 +129,39 @@ class Admin extends MY_Controller{
 
         echo json_encode($items);
     }
+
+    public function getDetailsCategory(){
+        $post = $this->input->post("id");
+
+        $get = $this->universal->get(
+            false,
+            "category",
+            "*",
+            "all",
+            array(
+                "id" => $post
+            )
+        );
+
+        echo json_encode($get);
+    }
+
+    public function editDetailsCategory(){
+        $post = $this->input->post();
+
+        $update = $this->universal->update(
+            "category",
+            array(
+                "category_name" => $post["cname"],
+                "status" => $post["status"]
+            ),
+            array(
+                "id" => $post["catId"]
+            )
+            );
+
+        echo json_encode(array(
+            "message" => "Updated Successfully!"
+        ));
+    }
 }

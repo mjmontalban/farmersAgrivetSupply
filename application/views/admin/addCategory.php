@@ -89,7 +89,8 @@
                            <td><?php echo $value->category_name; ?></td>
                            <td><button type="button" class="<?php echo ($value->status == 1 ) ? 'btn btn-block btn-success btn-xs' : 'btn btn-block btn-danger btn-xs' ?>"><?php echo ($value->status == 1 ) ? 'Active' : 'Inactive' ?></button></td>
                            <td><?php echo $value->add_date; ?></td>
-                           <td><a href="<?php echo base_url("admin/categoryItems/".$value->id."/".$value->category_name); ?>" target="_blank" class="btn btn-sm btn-info">Show Items</a> | <button data-id="<?php echo $value->id; ?>" id="show_Category" class="btn btn-sm btn-primary">EDIT</button></td>
+                           <td><a href="<?php echo base_url("admin/categoryItems/".$value->id."/".$value->category_name); ?>" target="_blank" class="btn btn-sm btn-info">Show Items</a> 
+                           | <button data-id="<?php echo $value->id; ?>" id="updateCat" data-toggle="modal" data-target="#updateCategory" class="btn btn-sm btn-primary">EDIT</button></td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -99,3 +100,40 @@
         </div>
 </div>
 </section>
+<div class="modal fade" id="updateCategory">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modify Category</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="form_edit">
+            <div class="modal-body">
+              <div class="row">
+                      <input type="hidden" id="catId" name="catId">
+                      <div class="col-md-12">
+                        <label for="">Category Name</label>
+                        <input type="text" id="cname" name="cname" class="form-control" required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="">Status</label>
+                        <select name="status" id="status" class="form-control">
+                          <option value="1">Active</option>
+                          <option value="0">Inactive</option>
+                        </select>
+                      </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->

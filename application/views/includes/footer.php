@@ -20,20 +20,16 @@
 <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="<?php echo base_url(); ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>dist/js/adminlte.js"></script>
 
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="<?php echo base_url(); ?>plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="<?php echo base_url(); ?>plugins/raphael/raphael.min.js"></script>
-<script src="<?php echo base_url(); ?>plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="<?php echo base_url(); ?>plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- PAGE PLUGINS -->>
 <!-- ChartJS -->
 <script src="<?php echo base_url(); ?>plugins/chart.js/Chart.min.js"></script>
-
+<script src="<?php echo base_url(); ?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo base_url(); ?>plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
