@@ -47,7 +47,7 @@
                            <td><?php echo $value->quantity; ?></td>
                            <td><?php echo $value->item_price; ?></td>
                            <td><?php echo $value->add_date; ?></td>
-                           <td><button data-id="<?php echo $value->id; ?>" class="btn btn-sm btn-primary">EDIT</button></td>
+                           <td><button data-id="<?php echo $value->id; ?>" data-toggle="modal" data-target="#updateItem" class="btn btn-sm btn-primary">EDIT</button></td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>
@@ -57,3 +57,45 @@
         </div>
 </div>
 </section>
+<div class="modal fade" id="updateItem">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modify Category</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="form_edit_items">
+            <div class="modal-body">
+              <div class="row">
+                      <input type="hidden" id="itemId" name="itemId">
+                      <div class="col-md-12">
+                        <label for="">Item Name</label>
+                        <input type="text" id="iname" name="iname" class="form-control" required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="">Description</label>
+                        <input type="text" id="description" name="description" class="form-control" required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="">Quantity</label>
+                        <input type="text" id="quantity" name="quantity" class="form-control" required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="">Price</label>
+                        <input type="text" id="price" name="price" class="form-control" required>
+                      </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
