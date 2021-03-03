@@ -86,4 +86,47 @@ class Admin extends MY_Controller{
             redirect("admin/items");
         }
     }
+
+    public function categoryItems($category = null,$name = null){
+        if(is_null($category) || $category == "" || is_null($name) || $name == ""){
+            echo "Invalid URL"; die();
+        }
+        
+        $data["items"] = $this->universal->get(
+          false,
+          "items",
+          "*",
+          "all",
+          array(
+              "category_id" => $category
+          )
+        );
+     $data["catName"] = urldecode($name);
+     $data["main"] = 'categoryItems';
+     $this->renderPage("admin/categoryItems",$data);
+        
+    }
+
+    public function purchase(){
+        $data["main"] = 'purchase';
+        $this->renderPage("admin/purchase",$data);
+
+    }
+
+    public function getItemSelect(){
+        $post = $this->input->post("searchTerm");
+
+        $items = $this->universal->get(
+            false,
+            "items",
+            "id,item_name as text",
+            "all",
+            array(),
+            array(
+                "item_name" => $post
+            )
+        );
+
+        echo json_encode($items);
+    }
 }

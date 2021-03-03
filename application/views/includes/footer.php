@@ -39,13 +39,15 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url(); ?>dist/js/pages/dashboard2.js"></script>
 
-
-  <script src="<?php echo base_url(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script> const site_url = '<?php echo base_url(); ?>'; </script>
+<script src="<?php echo base_url(); ?>plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/custom.js"></script>
 
 

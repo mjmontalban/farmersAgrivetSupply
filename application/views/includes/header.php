@@ -15,12 +15,16 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>dist/css/adminlte.min.css">
 
   <!-- datatables -->
- 
+  <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
+  <!-- SELECT 2 -->
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -152,7 +156,7 @@
           <img src="<?php echo base_url(); ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?php echo $this->session->userdata("identity"); ?></a>
         </div>
       </div>
 
@@ -203,7 +207,15 @@
             </ul>
           </li>
           
-          
+          <li class="nav-item">
+            <a href="<?php echo base_url("admin/purchase"); ?>" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Purchase
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

@@ -89,7 +89,7 @@
                            <td><?php echo $value->category_name; ?></td>
                            <td><button type="button" class="<?php echo ($value->status == 1 ) ? 'btn btn-block btn-success btn-xs' : 'btn btn-block btn-danger btn-xs' ?>"><?php echo ($value->status == 1 ) ? 'Active' : 'Inactive' ?></button></td>
                            <td><?php echo $value->add_date; ?></td>
-                           <td><button data-id="<?php echo $value->id; ?>" class="btn btn-sm btn-primary">EDIT</button></td>
+                           <td><a href="<?php echo base_url("admin/categoryItems/".$value->id."/".$value->category_name); ?>" target="_blank" class="btn btn-sm btn-info">Show Items</a> | <button data-id="<?php echo $value->id; ?>" id="show_Category" class="btn btn-sm btn-primary">EDIT</button></td>
                         </tr>
                     <?php endforeach; ?>
                   </tbody>
