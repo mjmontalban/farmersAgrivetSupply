@@ -25,7 +25,12 @@
 <script src="<?php echo base_url(); ?>dist/js/adminlte.js"></script>
 
 <!-- PAGE PLUGINS -->>
+<!-- swal -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <!-- ChartJS -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script src="<?php echo base_url(); ?>plugins/chart.js/Chart.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->

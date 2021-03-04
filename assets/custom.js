@@ -130,4 +130,53 @@ $(document).on('submit','#form_edit',function(e){
     })
   })
 
+  
+
+  $(document).on('click','#confirm',function(){
+    Swal.queue([{
+      title: 'Confirm Purchase?',
+      confirmButtonText: 'Confirm',
+      showCancelButton: true,
+      allowOutsideClick: false,
+      text:
+        'This will generate purchase',
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        return fetch(site_url+'admin/generatePurchase',
+            {
+              method: 'POST',
+              credentials: 'same-origin',
+              mode: 'same-origin',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(
+                {
+                  orders : $('#orderList').val()
+                }
+              )
+            }
+        )
+          .then(response => response.json())
+          .then(data => Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Purchase Completed',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(function(){
+              window.location.href = site_url + 'admin/purchase';
+            })
+          )
+          .catch(() => {
+            Swal.insertQueueStep({
+              icon: 'error',
+              title: 'Unable to get your public IP'
+            })
+          })
+      }
+    }])
+  });
+
 });

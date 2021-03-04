@@ -218,4 +218,12 @@ class Admin extends MY_Controller{
         }
         
     }
+
+    public function generatePurchase(){
+        $raw =  file_get_contents('php://input');
+
+        $data = json_decode($raw);
+        $orders = json_decode($data->orders);
+        echo json_encode($orders);
+    }
 }
