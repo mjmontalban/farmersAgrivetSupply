@@ -47,7 +47,7 @@ $(document).ready(function(){
              '<input type="text" name="quantity[]" class="form-control"> </div>'+
           '<div class="col-md-4">'+
                         '<div class="icheck-primary d-inline">'+
-                            '<input type="checkbox" id="checkboxPrimary'+ctr+'" name="check[]">'+
+                            '<input type="checkbox" id="checkboxPrimary'+ctr+'" value="1" name="check[]">'+
                             '<label for="checkboxPrimary'+ctr+'">Confirm</label></div></div></div>';
     
      $("#mainContent").append(html);
@@ -94,5 +94,40 @@ $(document).on('submit','#form_edit',function(e){
     }
   })
 });
+
+  $(document).on('click','#itemButtonUpdate',function(){
+    var id = $(this).data("id");
+    var item = $(this).data("item");
+    var description = $(this).data("description");
+    var quantity = $(this).data("quantity");
+    var price = $(this).data("price");
+
+    $("#itemId").val(id);
+    $("#iname").val(item);
+    $("#description").val(description);
+    $("#quantity").val(quantity);
+    $("#price").val(price);
+  });
+
+  $(document).on('submit','#form_edit_items',function(e){
+    e.preventDefault();
+    
+    $.ajax({
+      url : site_url + 'admin/updateItems',
+      method : 'POST',
+      data : new FormData(this),
+      contentType : false,
+      processData : false,
+      dataType : 'json',
+      success : function (response){
+        Toast.fire({
+          icon: 'success',
+          title: response.message
+        });
+
+         setTimeout(function(){ location.reload(); }, 2000);
+      }
+    })
+  })
 
 });

@@ -164,4 +164,58 @@ class Admin extends MY_Controller{
             "message" => "Updated Successfully!"
         ));
     }
+
+    public function updateItems(){
+
+        $post = $this->input->post();
+        $update = $this->universal->update(
+            "items",
+            array(
+                "item_name" => $post["iname"],
+                "description" => $post["description"],
+                "quantity" => $post["quantity"],
+                "item_price" => $post["price"],
+            ),
+            array(
+                "id" => $post["itemId"]
+            )
+        );
+
+        echo json_encode(array(
+            "message" => "Updated Successfully!"
+        ));
+    }
+
+    public function purchaseSummary(){
+        $postData = $this->input->post();
+        $orders = array();
+        if(!empty($postData)){
+            foreach($postData["item"] as $key => $value){
+                $details = $this->universal->get(
+                    false,
+                    "items",
+                    "*",
+                    "row",
+                    array(
+                       "id" => $value
+                    )
+                );
+    
+                $orders[] = array(
+                  "item_id" => $value,
+                  "item_name" => $details->item_name,
+                  "price" => $details->item_price,
+                  "description" => $details->description,
+                  "order_quantity" => $postData["quantity"][$key],
+                  "to_pay" => number_format($details->item_price * $postData["quantity"][$key],2)
+                );
+            }
+            $data["orders"] = $orders;
+            $data["main"] = 'summary';
+            $this->renderPage("admin/summary",$data);
+        }else{
+            echo "Oppps. You should not be here.";die();
+        }
+        
+    }
 }
