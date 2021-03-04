@@ -256,7 +256,61 @@ class Admin extends MY_Controller{
         ));
     }
 
-    public function test(){
+    public function soldItems(){
+        $post = $this->input->post();
+        if(!empty($post)){
+            $draw = $this->input->post('draw');
+            $length = $this->input->post('length');
+            $offset = $this->input->post('start');
+            $search = $this->input->post('search');
+            $order = $this->input->post('order');
+            $columns = $this->input->post('columns');
+            if(!empty($order)){
+                $setorder =  array($columns[$order[0]['column']]['data'] => $order[0]['dir']);
+              }else{
+                $setorder = array();
+              }
+            $where = array(
+            
+            );
+        
+            if(empty($search['value'])){
+                $like = array();
+            }else{
+                $like = array(
+                    'items.item_name' => $search['value'],
+                    'category.category_name' => $search['value'],
+                    'users.first_name' => $search['value'],
+                );
+            }
+        
+            $result = $this->universal->datatables(
+                'item_purchased',
+                'item_purchased.*,items.item_name,users.first_name,category.category_name',
+                $where,
+                array(
+                    "items" => "item_purchased.item_id = items.id",
+                    "users" => "item_purchased.user_id = users.id",
+                    "category" => "item_purchased.category_id = category.id"
+                ),
+                array($length => $offset),
+                $setorder,
+                $like,
+                true
+            );
+            echo json_encode(
+                array(
+                    'draw' => intval($draw),
+                    "recordsTotal" => $result['recordsTotal'],
+                    "recordsFiltered" => $result['recordsFiltered'],
+                    "data" => $result['data']
+                )
+            );
+        }else{
+            $data["main"] = 'soldItems';
+            $this->renderPage("admin/sold",$data);
+        }
+       
         
     }
 }

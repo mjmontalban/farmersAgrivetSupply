@@ -50,6 +50,8 @@
 <!-- Select2 -->
 <script src="<?php echo base_url(); ?>plugins/select2/js/select2.full.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/tables.js"></script>
+
 
 
 </body>
