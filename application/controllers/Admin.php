@@ -9,6 +9,18 @@ class Admin extends MY_Controller{
     }
 
     public function dashboard(){
+
+        // get Today Sales
+        $salesToday = $this->universal->get(
+            false,
+            "item_purchased",
+            "SUM(total_payment) as total",
+            "row",
+            array(
+                "DATE(purchased_date)" => date("Y-m-d")
+            )
+        );
+        $data["today"] = $salesToday->total;
         $data["main"] = 'dashboard';
         $this->renderPage("admin/dashboard",$data);
     }
@@ -203,6 +215,7 @@ class Admin extends MY_Controller{
     
                 $orders[] = array(
                   "item_id" => $value,
+                  "category_id" => $details->category_id,
                   "item_name" => $details->item_name,
                   "price" => $details->item_price,
                   "description" => $details->description,
@@ -221,9 +234,29 @@ class Admin extends MY_Controller{
 
     public function generatePurchase(){
         $raw =  file_get_contents('php://input');
-
+        $user_id = $this->ion_auth->user()->row()->id;
         $data = json_decode($raw);
         $orders = json_decode($data->orders);
-        echo json_encode($orders);
+        
+        foreach($orders as $key => $order){
+            $insert_purchase = $this->universal->insert(
+                "item_purchased",
+                array(
+                    "item_id" => $order->item_id,
+                    "category_id" => $order->category_id,
+                    "purchased_qty" => $order->order_quantity,
+                    "purchased_date" => date("Y-m-d H:i:s"),
+                    "total_payment" => $order->to_pay,
+                    "user_id" => $user_id
+                )
+            );
+        }
+        echo json_encode(array(
+            "status" => true
+        ));
+    }
+
+    public function test(){
+        
     }
 }
