@@ -184,8 +184,8 @@ class Auth extends CI_Controller
 				'value' => $user->id,
 			];
 
-			// render
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->session->set_flashdata("info",$this->data['message']);
+            redirect("admin/accountSettings","refresh");
 		}
 		else
 		{

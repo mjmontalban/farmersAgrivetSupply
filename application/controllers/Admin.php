@@ -505,4 +505,47 @@ class Admin extends MY_Controller{
             "message" => "Updated Successfully!"
         ));
     }
+
+    public function accountSettings(){
+        $admin_id = $this->ion_auth->user()->row()->id;
+        $data["userdata"] = $this->universal->get(
+          false,
+          "users",
+          "*",
+          "row",
+          array(
+              "id" => $admin_id
+          )
+        );
+
+        $data["main"] = 'settings';    
+        $this->renderPage("admin/settings",$data);
+    }
+
+    public function updateProfile(){
+        $post = $this->input->post();
+        if(!empty($this->emailChecker($post["email"]))){
+            $this->session->set_flashdata("info","Email Already Taken!");
+            redirect("admin/accountSettings","refresh");
+        }
+        $update = $this->universal->update(
+            "users",
+            array(
+                "first_name" => $post["firstname"],
+                "last_name" => $post["lastname"],
+                "phone" => $post["phone"],
+                "email" => $post["email"]
+            ),
+            array(
+                "id" => $post["user_id"]
+            )
+        );
+        if($update){
+            $this->session->set_flashdata("info","Profile Updated!");
+            redirect("admin/accountSettings","refresh");
+        }
+    }
+    public function emailChecker($em){
+        return $this->universal->get(false,"users","email","row",array("email"=>$em));
+    }
 }
