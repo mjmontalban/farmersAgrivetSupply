@@ -331,4 +331,8 @@ class Users extends MY_Controller{
         }
     }
 
+    public function emailChecker($em){
+        return $this->universal->get(false,"users","email","row",array("email"=>$em));
+    }
+
 }
