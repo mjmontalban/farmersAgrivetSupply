@@ -89,7 +89,7 @@
                                 <td><?php echo  $order["item_name"]; ?></td>
                                 <td><?php echo  $order["description"]; ?></td>
                                 <td><?php echo  $order["price"]; ?></td>
-                                <td><?php echo  $order["to_pay"]; ?></td>
+                                <td><?php echo  number_format($order["to_pay"],2); ?></td>
                             </tr>
                         <?php  
                     $subtotal = str_replace(',','',$order["to_pay"]);

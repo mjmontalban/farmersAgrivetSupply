@@ -24,7 +24,7 @@ class Admin extends MY_Controller{
                 "DATE(purchased_date)" => date("Y-m-d")
             )
         );
-        $data["today"] = $salesToday->total;
+        $data["today"] = (!empty($salesToday->total)) ? $salesToday->total : 0;
         $data["main"] = 'dashboard';
         $this->renderPage("admin/dashboard",$data);
     }
@@ -225,7 +225,7 @@ class Admin extends MY_Controller{
                   "price" => $details->item_price,
                   "description" => $details->description,
                   "order_quantity" => $postData["quantity"][$key],
-                  "to_pay" => number_format($details->item_price * $postData["quantity"][$key],2)
+                  "to_pay" => $details->item_price * $postData["quantity"][$key]
                 );
             }
             $orders["invoice_num"] = $rand;
