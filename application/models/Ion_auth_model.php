@@ -1890,7 +1890,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$this->db->update($this->tables['users'], ['last_login' => time()], ['id' => $id]);
+		$this->db->update($this->tables['users'], ['last_login' => date("Y-m-d H:i:s")], ['id' => $id]);
 
 		return $this->db->affected_rows() == 1;
 	}
@@ -1899,7 +1899,7 @@ class Ion_auth_model extends CI_Model
 	 * set_lang
 	 *
 	 * @param string $lang
-	 *
+		 *
 	 * @return bool
 	 * @author Ben Edmunds
 	 */

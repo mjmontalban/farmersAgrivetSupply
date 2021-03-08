@@ -51,12 +51,6 @@ $(document).ready(function(){
         },
         "columns" : [
             {"data" : "first_name"},
-            {"data" : "phone"},
-            {
-                "data" : "created_on" , render : function(data, type, row, meta){
-                    return new Date(Number(row.created_on)).toDateString();
-                }
-            },
             {"data" : "email"},
             {
                 "data" : "last_login" , render : function(data, type, row, meta){

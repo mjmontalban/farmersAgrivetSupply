@@ -42,8 +42,6 @@
                 <table id="usersTable" class="table table-bordered table-hover">
                   <thead>
                     <th>Full Name</th>
-                    <th>Phone</th>
-                    <th>Address</th>
                     <th>Email</th>
                     <th>Last Login</th>
                     <th>ACTION</th>
