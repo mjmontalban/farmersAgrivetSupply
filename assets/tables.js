@@ -53,9 +53,7 @@ $(document).ready(function(){
             {"data" : "first_name"},
             {"data" : "email"},
             {
-                "data" : "last_login" , render : function(data, type, row, meta){
-                    return new Date(Number(row.last_login)).toDateString();
-                }
+                "data" : "last_login"
             },
             {
                 "data" : "id" , render : function(data, type, row, meta){
