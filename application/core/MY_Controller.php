@@ -10,4 +10,10 @@ class MY_Controller extends CI_Controller{
         $this->load->view($content);
         $this->load->view("includes/footer");
     }
+
+    public function _renderUserPage($data){
+        $this->load->view("includes/user/header",$data);
+        $this->load->view($data["content"]);
+        $this->load->view("includes/user/footer");
+    }
 }

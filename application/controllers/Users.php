@@ -13,7 +13,8 @@ class Users extends MY_Controller{
     }
 
     public function dashboard(){
-        echo "users dashbaord";
+       $data["content"] = 'user/dashboard';
+       $this->_renderUserPage($data);
     }
 
 }
