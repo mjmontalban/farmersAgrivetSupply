@@ -461,4 +461,31 @@ class Admin extends MY_Controller{
             $this->renderPage("admin/myusers",$data);
         }
     }
+
+    public function invoice_details($invoiceId = null){
+        if(is_null($invoiceId)){
+            echo "ERROR URL!"; die();
+        }
+
+        $orders = $this->universal->get(
+            false,
+            "item_purchased",
+            "item_purchased.*,items.item_name,items.description,items.item_price",
+            "array",
+            array(
+                "invoice_id" => $invoiceId
+            ),
+            array(),
+            array(
+                "items" => "item_purchased.item_id = items.id"
+            )
+        );
+        if(empty($orders)){
+            echo "Invoice # not found on database. Please put the correct invoice #.";die();
+        }
+        $data["main"] = 'invoice_details';
+        $data["orders"] = $orders;
+            
+        $this->renderPage("admin/invoice_details",$data);
+    }
 }
