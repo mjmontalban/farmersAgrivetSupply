@@ -92,8 +92,8 @@
                                 <td><?php echo  $order["to_pay"]; ?></td>
                             </tr>
                         <?php  
-                    $toAdd = is_numeric($order["to_pay"]) ? $order["to_pay"] : 0;
-                    $total = $total + $toAdd;
+                    
+                    $total = $total + floatval($order["to_pay"]);
                     endforeach; ?>
                     </tbody>
                   </table>
