@@ -56,8 +56,17 @@ $(document).ready(function(){
                 "data" : "last_login"
             },
             {
+                "data" : "active" , render : function (data, type, row, meta){
+                    if(row.active == 1){
+                        return '<button class="btn btn-block btn-success btn-sm">Active</button>';
+                    }else{
+                        return '<button class="btn btn-block btn-danger btn-sm">Deactived</button>';
+                    }
+                }
+            },
+            {
                 "data" : "id" , render : function(data, type, row, meta){
-                    return '<button class="btn btn-block btn-primary btn-sm" id="modify_access" data-id="'+row.id+'">Modify Access</button>';
+                    return '<button class="btn btn-block btn-primary btn-sm modifyAccessButton" data-toggle="modal" data-target="#modifyAccessModal" data-id="'+row.id+'">Modify Access</button>';
                 }
             },
             

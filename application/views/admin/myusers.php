@@ -44,6 +44,7 @@
                     <th>Full Name</th>
                     <th>Email</th>
                     <th>Last Login</th>
+                    <th>Status</th>
                     <th>ACTION</th>
                   </thead>
                   <tbody>
@@ -99,3 +100,36 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+
+
+      <div class="modal fade show" id="modifyAccessModal" style="display: none; padding-right: 16px;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Access Setting</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <form id="modifyAccessForm">
+            <input type="hidden" id="user_id" name="user_id">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <select name="setActive" class="form-control">
+                    <option value="0">Deactivate</option>
+                    <option value="1">Activate</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>

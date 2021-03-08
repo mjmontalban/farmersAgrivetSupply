@@ -179,4 +179,29 @@ $(document).on('submit','#form_edit',function(e){
     }])
   });
 
+  $(document).on('click','.modifyAccessButton',function(){
+    var id = $(this).data("id");
+    $('#user_id').val(id);
+  });
+
+  $(document).on('submit','#modifyAccessForm',function(evt){
+    evt.preventDefault();
+    $.ajax({
+      url : site_url + 'admin/updateUserAccess',
+      method : 'POST',
+      data : new FormData(this),
+      contentType : false,
+      processData : false,
+      dataType : 'json',
+      success : function (response){
+        Toast.fire({
+          icon: 'success',
+          title: response.message
+        });
+
+         setTimeout(function(){ location.reload(); }, 2000);
+      }
+    })
+  });
+
 });

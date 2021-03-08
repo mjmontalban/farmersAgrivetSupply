@@ -488,4 +488,21 @@ class Admin extends MY_Controller{
             
         $this->renderPage("admin/invoice_details",$data);
     }
+    public function updateUserAccess(){
+        $id = $this->input->post("user_id");
+        $status = $this->input->post("setActive");
+        $this->universal->update(
+            "users",
+            array(
+                "active" => $status
+            ),
+            array(
+                "id" => $id
+            )
+        );
+
+        echo json_encode(array(
+            "message" => "Updated Successfully!"
+        ));
+    }
 }
