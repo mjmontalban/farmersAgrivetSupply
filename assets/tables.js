@@ -17,4 +17,26 @@ $(document).ready(function(){
             {"data" : "first_name"}
         ]
     });
+
+    var soldTables = $("#invoiceTable").DataTable({
+        "processing" : true,
+        "serverSide": true,
+        "responsive": true,
+        "order": [[0,'desc']],
+        "ajax": {
+            "url" : site_url + 'admin/invoiceSearch',
+            "type": "POST"
+        },
+        "columns" : [
+            {"data" : "id"},
+            {"data" : "first_name"},
+            {"data" : "date_added"},
+            {
+                "data" : "id" , render : function(data, type, row, meta){
+                    return '<button class="btn btn-block btn-primary btn-sm">Show Details</button>';
+                }
+            },
+            
+        ]
+    });
 });

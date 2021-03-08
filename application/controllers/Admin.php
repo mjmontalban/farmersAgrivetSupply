@@ -324,6 +324,7 @@ class Admin extends MY_Controller{
             );
         }else{
             $data["main"] = 'soldItems';
+
             $this->renderPage("admin/sold",$data);
         }
        
@@ -351,7 +352,58 @@ class Admin extends MY_Controller{
         }     
     }
 
-    public function analytics(){
+    public function invoiceSearch(){
+        $post = $this->input->post();
+        if(!empty($post)){
+            $draw = $this->input->post('draw');
+            $length = $this->input->post('length');
+            $offset = $this->input->post('start');
+            $search = $this->input->post('search');
+            $order = $this->input->post('order');
+            $columns = $this->input->post('columns');
+            if(!empty($order)){
+                $setorder =  array($columns[$order[0]['column']]['data'] => $order[0]['dir']);
+              }else{
+                $setorder = array();
+              }
+            $where = array(
+            
+            );
         
+            if(empty($search['value'])){
+                $like = array();
+            }else{
+                $like = array(
+                    'invoice.id' => $search['value'],
+                    'DATE(invoice.date_added)' => $search['value'],
+                    'users.first_name' => $search['value'],
+                );
+            }
+        
+            $result = $this->universal->datatables(
+                'invoice',
+                'invoice.*,users.first_name',
+                $where,
+                array(
+                    "users" => "invoice.added_by = users.id",
+                ),
+                array($length => $offset),
+                $setorder,
+                $like,
+                true
+            );
+            echo json_encode(
+                array(
+                    'draw' => intval($draw),
+                    "recordsTotal" => $result['recordsTotal'],
+                    "recordsFiltered" => $result['recordsFiltered'],
+                    "data" => $result['data']
+                )
+            );
+        }else{
+            $data["main"] = 'invoice';
+            
+            $this->renderPage("admin/invoice",$data);
+        }
     }
 }
