@@ -183,9 +183,14 @@ class Auth extends CI_Controller
 				'type' => 'hidden',
 				'value' => $user->id,
 			];
-
 			$this->session->set_flashdata("info",$this->data['message']);
-            redirect("admin/accountSettings","refresh");
+
+			if(!$this->ion_auth->is_admin()){
+            	redirect("users/accountSettings","refresh");
+			}else{
+            	redirect("admin/accountSettings","refresh");
+			}
+			
 		}
 		else
 		{
