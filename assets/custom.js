@@ -180,7 +180,7 @@ $(document).on('submit','#form_edit',function(e){
   });
 
   $(document).on('click','#invoice_details',function(){
-    var id = $(this).data("invoiceId");
+    var id = $(this).data("id");
 
     alert(id);
   });
