@@ -311,7 +311,7 @@ class Users extends MY_Controller{
         $post = $this->input->post();
         if(!empty($this->emailChecker($post["email"]))){
             $this->session->set_flashdata("info","Email Already Taken!");
-            redirect("admin/accountSettings","refresh");
+            redirect("users/accountSettings","refresh");
         }
         $update = $this->universal->update(
             "users",
