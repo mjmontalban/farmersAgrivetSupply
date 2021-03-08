@@ -33,7 +33,7 @@ $(document).ready(function(){
             {"data" : "date_added"},
             {
                 "data" : "id" , render : function(data, type, row, meta){
-                    return '<button class="btn btn-block btn-primary btn-sm">Show Details</button>';
+                    return '<button class="btn btn-block btn-primary btn-sm" id="invoice_details" data-invoiceId="'+data+'">Show Details</button>';
                 }
             },
             
