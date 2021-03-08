@@ -350,4 +350,8 @@ class Admin extends MY_Controller{
             return $result;
         }     
     }
+
+    public function analytics(){
+        
+    }
 }
