@@ -5,7 +5,11 @@ class Admin extends MY_Controller{
         parent::__construct();
         if(!$this->ion_auth->logged_in()){
 			redirect('login');
-		}
+		}else{
+            if(!$this->ion_auth->is_admin()){
+                echo "You must be administrator to view access this page!";die();
+            }
+        }
     }
 
     public function dashboard(){
