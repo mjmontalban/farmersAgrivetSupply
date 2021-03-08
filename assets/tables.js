@@ -52,9 +52,17 @@ $(document).ready(function(){
         "columns" : [
             {"data" : "first_name"},
             {"data" : "phone"},
-            {"data" : "created_on"},
+            {
+                "data" : "created_on" , render : function(data, type, row, meta){
+                    return new Date(Number(row.created_on)).toDateString();
+                }
+            },
             {"data" : "email"},
-            {"data" : "last_login"},
+            {
+                "data" : "last_login" , render : function(data, type, row, meta){
+                    return new Date(Number(row.last_login)).toDateString();
+                }
+            },
             {
                 "data" : "id" , render : function(data, type, row, meta){
                     return '<button class="btn btn-block btn-primary btn-sm" id="modify_access" data-id="'+row.id+'">Modify Access</button>';
