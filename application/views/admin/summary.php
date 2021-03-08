@@ -92,7 +92,7 @@
                                 <td><?php echo  $order["to_pay"]; ?></td>
                             </tr>
                         <?php  
-                    $total = $total + $order["to_pay"];
+                    $total = $total + is_numeric($order["to_pay"]) ? $order["to_pay"] : 0;
                     endforeach; ?>
                     </tbody>
                   </table>
