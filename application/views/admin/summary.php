@@ -59,7 +59,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <b>Invoice #007612</b><br>
+                  <b>Invoice <?php echo '#'.$orders["invoice_num"]; ?></b><br>
                   <br>
                   <b>Order ID:</b> 4F3S8J<br>
                   <b>Payment Due:</b> 2/22/2014<br>
@@ -83,7 +83,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <?php $total = 0; foreach($orders as $key => $order): ?>
+                        <?php $total = 0; foreach($orders["items"] as $key => $order): ?>
                             <tr>
                                 <td><?php echo  $order["order_quantity"]; ?></td>
                                 <td><?php echo  $order["item_name"]; ?></td>

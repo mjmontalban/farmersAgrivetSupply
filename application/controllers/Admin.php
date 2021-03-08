@@ -201,6 +201,7 @@ class Admin extends MY_Controller{
     public function purchaseSummary(){
         $postData = $this->input->post();
         $orders = array();
+        $rand = $this->randomInvoiceNumber();
         if(!empty($postData)){
             foreach($postData["item"] as $key => $value){
                 $details = $this->universal->get(
@@ -213,7 +214,7 @@ class Admin extends MY_Controller{
                     )
                 );
     
-                $orders[] = array(
+                $orders["items"][] = array(
                   "item_id" => $value,
                   "category_id" => $details->category_id,
                   "item_name" => $details->item_name,
@@ -223,6 +224,7 @@ class Admin extends MY_Controller{
                   "to_pay" => number_format($details->item_price * $postData["quantity"][$key],2)
                 );
             }
+            $orders["invoice_num"] = $rand;
             $data["orders"] = $orders;
             $data["main"] = 'summary';
             $this->renderPage("admin/summary",$data);
@@ -237,8 +239,17 @@ class Admin extends MY_Controller{
         $user_id = $this->ion_auth->user()->row()->id;
         $data = json_decode($raw);
         $orders = json_decode($data->orders);
-        
-        foreach($orders as $key => $order){
+        // echo '<pre>';
+        // print_r($orders->invoice_num);die();
+        $insertInvoice = $this->universal->insert(
+            "invoice",
+            array(
+                "id" => $orders->invoice_num,
+                "date_added" => date("Y-m-d H:i:s"),
+                "added_by" => $this->ion_auth->user()->row()->id
+            )
+        );
+        foreach($orders->items as $key => $order){
             $insert_purchase = $this->universal->insert(
                 "item_purchased",
                 array(
@@ -247,7 +258,8 @@ class Admin extends MY_Controller{
                     "purchased_qty" => $order->order_quantity,
                     "purchased_date" => date("Y-m-d H:i:s"),
                     "total_payment" => $order->to_pay,
-                    "user_id" => $user_id
+                    "user_id" => $user_id,
+                    "invoice_id" => $orders->invoice_num
                 )
             );
         }
@@ -312,5 +324,26 @@ class Admin extends MY_Controller{
         }
        
         
+    }
+    public function randomInvoiceNumber() {
+        $result = '';
+    
+        for($i = 0; $i < 6; $i++) {
+            $result .= mt_rand(0, 9);
+        }
+        $check = $this->universal->get(
+            false,
+            "invoice",
+            "*",
+            "all",
+            array(
+                "id" => $result
+            )
+        );
+        if(!empty($check)){
+            $this->randomInvoiceNumber();
+        }else{
+            return $result;
+        }     
     }
 }
