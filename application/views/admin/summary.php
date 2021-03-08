@@ -92,8 +92,8 @@
                                 <td><?php echo  $order["to_pay"]; ?></td>
                             </tr>
                         <?php  
-                    
-                    $total = $total + floatval($order["to_pay"]);
+                    $subtotal = str_replace(',','',$order["to_pay"]);
+                    $total = $total + $subtotal;
                     endforeach; ?>
                     </tbody>
                   </table>
