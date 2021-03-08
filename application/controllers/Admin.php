@@ -406,4 +406,59 @@ class Admin extends MY_Controller{
             $this->renderPage("admin/invoice",$data);
         }
     }
+
+    public function manageUsers(){
+        $post = $this->input->post();
+        if(!empty($post)){
+            $draw = $this->input->post('draw');
+            $length = $this->input->post('length');
+            $offset = $this->input->post('start');
+            $search = $this->input->post('search');
+            $order = $this->input->post('order');
+            $columns = $this->input->post('columns');
+            if(!empty($order)){
+                $setorder =  array($columns[$order[0]['column']]['data'] => $order[0]['dir']);
+              }else{
+                $setorder = array();
+              }
+            $where = array(
+                "users_groups.group_id" => 2
+            );
+        
+            if(empty($search['value'])){
+                $like = array();
+            }else{
+                $like = array(
+                    'users.first_name' => $search['value'],
+                    'users.email' => $search['value'],
+                    'users.phone' => $search['value'],
+                );
+            }
+        
+            $result = $this->universal->datatables(
+                'users',
+                'users.*,',
+                $where,
+                array(
+                    "users_groups" => "users.id = users_groups.user_id",
+                ),
+                array($length => $offset),
+                $setorder,
+                $like,
+                true
+            );
+            echo json_encode(
+                array(
+                    'draw' => intval($draw),
+                    "recordsTotal" => $result['recordsTotal'],
+                    "recordsFiltered" => $result['recordsFiltered'],
+                    "data" => $result['data']
+                )
+            );
+        }else{
+            $data["main"] = 'myusers';
+            
+            $this->renderPage("admin/myusers",$data);
+        }
+    }
 }

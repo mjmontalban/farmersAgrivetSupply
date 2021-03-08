@@ -18,7 +18,7 @@ $(document).ready(function(){
         ]
     });
 
-    var soldTables = $("#invoiceTable").DataTable({
+    var invoiceTables = $("#invoiceTable").DataTable({
         "processing" : true,
         "serverSide": true,
         "responsive": true,
@@ -34,6 +34,30 @@ $(document).ready(function(){
             {
                 "data" : "id" , render : function(data, type, row, meta){
                     return '<button class="btn btn-block btn-primary btn-sm" id="invoice_details" data-id="'+row.id+'">Show Details</button>';
+                }
+            },
+            
+        ]
+    });
+
+    var usersTables = $("#usersTable").DataTable({
+        "processing" : true,
+        "serverSide": true,
+        "responsive": true,
+        "order": [[0,'desc']],
+        "ajax": {
+            "url" : site_url + 'admin/manageUsers',
+            "type": "POST"
+        },
+        "columns" : [
+            {"data" : "first_name"},
+            {"data" : "phone"},
+            {"data" : "created_on"},
+            {"data" : "email"},
+            {"data" : "last_login"},
+            {
+                "data" : "id" , render : function(data, type, row, meta){
+                    return '<button class="btn btn-block btn-primary btn-sm" id="modify_access" data-id="'+row.id+'">Modify Access</button>';
                 }
             },
             
