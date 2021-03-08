@@ -39,6 +39,7 @@ $(document).ready(function(){
     
   initSelect2();
   var ctr = 2;
+  var ch = 1;
   $(document).on("click","#add_row",function(){
      let html = '<div class="row mt-4"><div class="col-md-4"><select name="item[]"  class="form-control select_item" id="">'+
                   '</select></div>'+
@@ -47,11 +48,12 @@ $(document).ready(function(){
              '<input type="text" name="quantity[]" class="form-control"> </div>'+
           '<div class="col-md-4">'+
                         '<div class="icheck-primary d-inline">'+
-                            '<input type="checkbox" id="checkboxPrimary'+ctr+'" value="1" name="check[]">'+
+                            '<input type="checkbox" id="checkboxPrimary'+ctr+'" value="1" name="check['+ch+']">'+
                             '<label for="checkboxPrimary'+ctr+'">Confirm</label></div></div></div>';
     
      $("#mainContent").append(html);
      ctr++;
+     ch++;
      initSelect2();
   });
 

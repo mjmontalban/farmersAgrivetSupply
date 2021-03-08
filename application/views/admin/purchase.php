@@ -20,6 +20,14 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+      <?php if($this->session->flashdata("message")): ?>
+  
+  <div class="alert alert-info alert-dismissible">
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+     <h5><i class="icon fas fa-info"></i> Info!</h5>
+     <?php echo $this->session->flashdata("message"); ?>
+   </div>
+<?php endif; ?>
         <div class="row">
           <!-- left column -->
           
@@ -45,7 +53,7 @@
                         <div class="col-md-4">
                         <label for="">Status</label></br>
                         <div class="icheck-primary d-inline">
-                            <input type="checkbox" name="check[]" value="1" id="checkboxPrimary1">
+                            <input type="checkbox" name="check[0]" value="1" id="checkboxPrimary1">
                             <label for="checkboxPrimary1">
                                 Confirm
                             </label>

@@ -208,6 +208,9 @@ class Admin extends MY_Controller{
         $rand = $this->randomInvoiceNumber();
         if(!empty($postData)){
             foreach($postData["item"] as $key => $value){
+                if(!isset($postData["check"][$key])){
+                    continue;
+                }
                 $details = $this->universal->get(
                     false,
                     "items",
@@ -227,6 +230,10 @@ class Admin extends MY_Controller{
                   "order_quantity" => $postData["quantity"][$key],
                   "to_pay" => $details->item_price * $postData["quantity"][$key]
                 );
+            }
+            if(empty($orders["items"])){
+                $this->session->set_flashdata("message","Please CONFIRM purchase by checking the checkbox!");
+                redirect("admin/purchase","refresh");
             }
             $orders["invoice_num"] = $rand;
             $data["orders"] = $orders;
