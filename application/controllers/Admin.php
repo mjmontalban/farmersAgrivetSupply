@@ -589,13 +589,18 @@ class Admin extends MY_Controller{
 
     public function analytics(){
         $data["main"] = 'analytics';
+        if(empty($this->input->post())){
+            $date = date("Y-m-d");
+        }else{
+            $date = $this->input->post("fdate");
+        }
         $data["analytics"] = $this->universal->get(
             false,
             "item_purchased",
             "SUM(purchased_qty) as quantity, SUM(total_payment) as sales,CONCAT(users.first_name,' ',users.last_name) as user",
             "all",
             array(
-                "DATE(purchased_date)" => date("Y-m-d")
+                "DATE(purchased_date)" => $date
             ),
             array(),
             array(
@@ -607,6 +612,7 @@ class Admin extends MY_Controller{
                 "item_purchased.user_id"
             ),
         );
+        $data["fdate"] = $date;
         $this->renderPage("admin/analytics",$data);
     }
 }

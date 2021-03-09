@@ -20,6 +20,16 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+      <div class="col-md-6">
+      <form action="<?php echo base_url("admin/analytics"); ?>" method="POST">
+      <div class="input-group mb-3">
+                  <input type="text" class="form-control rounded-0" name="fdate" id="date_filter" value="<?php echo $fdate; ?>" required>
+                  <span class="input-group-append">
+                    <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                  </span>
+                </div>
+      </form>
+      </div>
        <?php if(empty($analytics)): ?>
         <div class="alert alert-warning alert-dismissible">
      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

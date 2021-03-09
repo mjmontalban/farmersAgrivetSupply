@@ -206,4 +206,9 @@ $(document).on('submit','#form_edit',function(e){
     })
   });
 
+  $('#date_filter').datepicker({
+    todayHighlight: true,
+    format: "yyyy-mm-dd"
+  });
+
 });
