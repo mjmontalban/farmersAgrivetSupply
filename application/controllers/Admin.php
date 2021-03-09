@@ -24,7 +24,38 @@ class Admin extends MY_Controller{
                 "DATE(purchased_date)" => date("Y-m-d")
             )
         );
-        $data["today"] = (!empty($salesToday->total)) ? $salesToday->total : 0;
+        // get total quantity today
+        $qtyToday = $this->universal->get(
+            false,
+            "item_purchased",
+            "SUM(purchased_qty) as totalQty",
+            "row",
+            array(
+                "DATE(purchased_date)" => date("Y-m-d")
+            )
+        );
+        $users = $this->universal->get(
+            false,
+            "users",
+            "COUNT(id) as totalUsers",
+            "row",
+            array(
+                "active" => 1
+            )
+        );
+        $invoice = $this->universal->get(
+            false,
+            "invoice",
+            "COUNT(id) as totalInvoice",
+            "row",
+            array(
+                "DATE(date_added)" => date("Y-m-d")
+            )
+        );
+        $data["sales"] = (!empty($salesToday->total)) ? $salesToday->total : 0;
+        $data["qty"] = (!empty($qtyToday->totalQty)) ? $qtyToday->totalQty : 0;
+        $data["usersTotal"] = $users->totalUsers;
+        $data["totalInvoice"] = $invoice->totalInvoice;
         $data["main"] = 'dashboard';
         $this->renderPage("admin/dashboard",$data);
     }
@@ -556,7 +587,26 @@ class Admin extends MY_Controller{
         return $this->universal->get(false,"users","email","row",array("email"=>$em));
     }
 
-    public function datetime(){
-        echo date("Y-m-d H:i:s");
+    public function analytics(){
+        $data["main"] = 'analytics';
+        $data["analytics"] = $this->universal->get(
+            false,
+            "item_purchased",
+            "SUM(purchased_qty) as quantity, SUM(total_payment) as sales,CONCAT(users.first_name,' ',users.last_name) as user",
+            "all",
+            array(
+                "DATE(purchased_date)" => date("Y-m-d")
+            ),
+            array(),
+            array(
+                "users" => "item_purchased.user_id = users.id"
+            ),
+            array(),
+            array(),
+            array(
+                "item_purchased.user_id"
+            ),
+        );
+        $this->renderPage("admin/analytics",$data);
     }
 }

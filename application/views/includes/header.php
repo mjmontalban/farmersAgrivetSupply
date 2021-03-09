@@ -103,7 +103,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="javascript:;" class="nav-link">
+                <a href="<?php echo base_url("admin/analytics"); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Analytics Dashboard</p>
                 </a>
