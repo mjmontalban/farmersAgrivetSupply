@@ -24,7 +24,40 @@ class Users extends MY_Controller{
                 "user_id" => $this->ion_auth->user()->row()->id
             )
         );
-       $data["today"] = (!empty($salesToday->total)) ? $salesToday->total : 0;
+        // get total quantity today
+        $qtyToday = $this->universal->get(
+            false,
+            "item_purchased",
+            "SUM(purchased_qty) as totalQty",
+            "row",
+            array(
+                "DATE(purchased_date)" => date("Y-m-d"),
+                "user_id" => $this->ion_auth->user()->row()->id
+            )
+        );
+        $users = $this->universal->get(
+            false,
+            "users",
+            "COUNT(id) as totalUsers",
+            "row",
+            array(
+                "active" => 1
+            )
+        );
+        $invoice = $this->universal->get(
+            false,
+            "invoice",
+            "COUNT(id) as totalInvoice",
+            "row",
+            array(
+                "DATE(date_added)" => date("Y-m-d"),
+                "added_by" => $this->ion_auth->user()->row()->id
+            )
+        );
+        $data["sales"] = (!empty($salesToday->total)) ? $salesToday->total : 0;
+        $data["qty"] = (!empty($qtyToday->totalQty)) ? $qtyToday->totalQty : 0;
+        $data["usersTotal"] = $users->totalUsers;
+        $data["totalInvoice"] = $invoice->totalInvoice;
        $data["content"] = 'user/dashboard';
        $this->_renderUserPage($data);
     }

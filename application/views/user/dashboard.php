@@ -28,9 +28,9 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-arrow-up"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Top Up Item</span>
+                <span class="info-box-text">Invoice Today</span>
                 <span class="info-box-number">
-                  EXAMPLE
+                  <?php echo $totalInvoice; ?>
                   <!-- <small>%</small> -->
                 </span>
               </div>
@@ -45,7 +45,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Quantity Sold Today</span>
-                <span class="info-box-number">489</span>
+                <span class="info-box-number"><?php echo $qty; ?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -62,7 +62,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Sales Today</span>
-                <span class="info-box-number"><?php echo $today; ?></span>
+                <span class="info-box-number"><?php echo $sales; ?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -75,7 +75,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Members</span>
-                <span class="info-box-number">4</span>
+                <span class="info-box-number"><?php echo $usersTotal;   ?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
