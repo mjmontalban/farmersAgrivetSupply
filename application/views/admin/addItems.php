@@ -61,7 +61,7 @@
                     <input type="text" class="form-control" name="quantity" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Supplier Price Cost</label>
+                    <label for="exampleInputPassword1">Supplier Price Cost (Overall cost of this item)</label>
                     <input type="text" class="form-control" name="spc" required>
                   </div>
                   <div class="form-group">

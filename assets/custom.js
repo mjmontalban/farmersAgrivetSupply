@@ -218,7 +218,7 @@ $(document).on('submit','#form_edit',function(e){
     if (value == 0){
       html = `<div class="col-md-12">
       <label for="exampleInputPassword1">Price</label>
-      <input type="text" class="form-control numOnly" name="price_bundle" required>
+      <input type="text" class="form-control numOnly" name="price" required>
     </div>`;
     bid = `<div class="col-md-12">
     <label for="exampleInputPassword1">Minimum Bidding</label>
@@ -227,7 +227,7 @@ $(document).on('submit','#form_edit',function(e){
     }else if(value == 1){
       html = `<div class="col-md-4">
       <label for="exampleInputPassword1">Price Per Bundle</label>
-      <input type="text" class="form-control numOnly" name="price" required>
+      <input type="text" class="form-control numOnly" name="price_bundle" required>
     </div>
     <div class="col-md-4">
       <label for="exampleInputPassword1">Price Per Half Bundle</label>
@@ -252,27 +252,27 @@ $(document).on('submit','#form_edit',function(e){
     }else{
       html = `<div class="col-md-4">
       <label for="exampleInputPassword1">Price Per Sack</label>
-      <input type="text" class="form-control numOnly" name="price" required>
+      <input type="text" class="form-control numOnly" name="price_sack" required>
     </div>
     <div class="col-md-4">
       <label for="exampleInputPassword1">Price Per Half Sack</label>
-      <input type="text" class="form-control numOnly" name="price" required>
+      <input type="text" class="form-control numOnly" name="price_half_sack" required>
     </div>
     <div class="col-md-4">
       <label for="exampleInputPassword1">Price Per Kilogram</label>
-      <input type="text" class="form-control numOnly" name="price" required>
+      <input type="text" class="form-control numOnly" name="price_per_kilogram" required>
     </div>`;
     bid = `<div class="col-md-4">
     <label for="exampleInputPassword1">Bid Per Sack</label>
-    <input type="text" class="form-control numOnly" name="bid_bundle" required>
+    <input type="text" class="form-control numOnly" name="bid_sack" required>
   </div>
   <div class="col-md-4">
     <label for="exampleInputPassword1">Bid Per Half Sack</label>
-    <input type="text" class="form-control numOnly" name="bid_half_bundle" required>
+    <input type="text" class="form-control numOnly" name="bid_half_sack" required>
   </div>
   <div class="col-md-4">
     <label for="exampleInputPassword1">Bid Per Kilogram</label>
-    <input type="text" class="form-control numOnly" name="bid_piece" required>
+    <input type="text" class="form-control numOnly" name="bid_kilogram" required>
   </div>`;
     }
     $("#priceList").html(html);
