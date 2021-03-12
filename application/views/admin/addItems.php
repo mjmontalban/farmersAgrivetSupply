@@ -66,7 +66,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Pricing Options</label>
-                    <select name="options" id="pricingOptions" class="form-control">
+                    <select name="options" id="pricingOptions" class="form-control pricingOptions">
                           <option value="0">- Fix Price</option>
                           <option value="1">- Per Bundle</option>
                           <option value="2">- Per Sack/Kilo</option>
@@ -74,7 +74,7 @@
                   </div>
                   <div class="form-group">
                   <p style="font-weight: bold" class="text-center">Set Price List</p>
-                    <div class="row" id="priceList">
+                    <div class="row priceList" id="priceList">
                       <div class="col-md-12">
                           <label for="exampleInputPassword1">Price</label>
                           <input type="text" class="form-control numOnly" name="price" required>

@@ -34,7 +34,8 @@
                   <thead>
                     <th>Item Name</th>
                     <th>Description</th>
-                    <th>Quantity</th>
+                    <th>Stock Quantity</th>
+                    <th>Paid to Supplier</th>
                     <th>Date Added</th>
                     <th>Action</th>
                   </thead>
@@ -44,12 +45,10 @@
                            <td><?php echo $value->item_name; ?></td>
                            <td><?php echo $value->description; ?></td>
                            <td><?php echo $value->quantity; ?></td>
+                           <td><?php echo number_format($value->supplier_price_cost,2); ?></td>
                            <td><?php echo $value->add_date; ?></td>
                            <td><button data-id="<?php echo $value->id; ?>" data-toggle="modal" 
                            data-id="<?php echo $value->id; ?>"
-                           data-item="<?php echo $value->item_name; ?>"
-                           data-description="<?php echo $value->description; ?>"
-                           data-quantity="<?php echo $value->quantity; ?>"
                            data-target="#updateItem" id="itemButtonUpdate" class="btn btn-sm btn-primary">EDIT</button></td>
                         </tr>
                     <?php endforeach; ?>
@@ -86,9 +85,29 @@
                         <input type="text" id="quantity" name="quantity" class="form-control" required>
                       </div>
                       <div class="col-md-12">
-                        <label for="">Price</label>
+                        <label for="">Price Paid To Supplier</label>
                         <input type="text" id="price" name="price" class="form-control" required>
                       </div>
+                      <div class="col-md-12">
+                        <p style="font-weight: bold" class="text-center"> Pricing Options </p>
+                        <select name="options" id="pricingOptions1" class="form-control pricingOptions">
+                              <option value="0">- Fix Price</option>
+                              <option value="1">- Per Bundle</option>
+                              <option value="2">- Per Sack/Kilo</option>
+                        </select>
+                      </div>
+                      <div class="col-md-12">
+                         <div class="row priceList" id="priceList1">
+                    
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <p style="font-weight: bold" class="text-center"> Set Bidding List </p>
+                         <div class="row bidding" id="bidding1">
+                    
+                        </div>
+                      </div>
+                      
               </div>
             </div>
             <div class="modal-footer justify-content-between">

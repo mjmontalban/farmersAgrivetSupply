@@ -92,7 +92,12 @@ class Admin extends MY_Controller{
             false,
             "items",
             "*",
-            "all"
+            "all",
+            array(),
+            array(),
+            array(),
+            array(),
+            array("id","desc"),
         );
          $data["main"] = 'itemlist';
 
@@ -629,5 +634,10 @@ class Admin extends MY_Controller{
         );
         $data["fdate"] = $date;
         $this->renderPage("admin/analytics",$data);
+    }
+
+    public function getItemDetailsById(){
+        $details = $this->universal->get(false,"items","*","row",array("id"=>$this->input->post("id")));
+        echo json_encode($details);
     }
 }

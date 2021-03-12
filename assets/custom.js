@@ -99,16 +99,87 @@ $(document).on('submit','#form_edit',function(e){
 
   $(document).on('click','#itemButtonUpdate',function(){
     var id = $(this).data("id");
-    var item = $(this).data("item");
-    var description = $(this).data("description");
-    var quantity = $(this).data("quantity");
-    var price = $(this).data("price");
-
-    $("#itemId").val(id);
-    $("#iname").val(item);
-    $("#description").val(description);
-    $("#quantity").val(quantity);
-    $("#price").val(price);
+    $.ajax({
+      url : site_url + 'admin/getItemDetailsById',
+      method : 'POST',
+      data : {
+        id : id
+      },
+      dataType : 'json',
+      success : function (response){
+          $("#itemId").val(response.id);
+          $("#iname").val(response.item_name);
+          $("#description").val(response.description);
+          $("#quantity").val(response.quantity);
+          $("#price").val(response.supplier_price_cost);
+          $(".pricingOptions").val(response.pricingOption);
+          var html = ``;
+          var bid = ``;
+          if (response.pricingOption == 0){
+            html = `<div class="col-md-12">
+            <label for="exampleInputPassword1">Price</label>
+            <input type="text" class="form-control numOnly" value="${response.fix_price}" name="price" required>
+          </div>`;
+          bid = `<div class="col-md-12">
+          <label for="exampleInputPassword1">Minimum Bidding</label>
+          <input type="text" class="form-control numOnly" name="fix_bid" required>
+        </div>`;
+          }else if(response.pricingOption == 1){
+            html = `<div class="col-md-4">
+            <label for="exampleInputPassword1">Price Per Bundle</label>
+            <input type="text" class="form-control numOnly" value="${response.per_bundle}" name="per_bundle" required>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputPassword1">Price Per Half Bundle</label>
+            <input type="text" class="form-control numOnly" value="${response.per_half_bundle}" name="per_half_bundle" required>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputPassword1">Price Per Piece</label>
+            <input type="text" class="form-control numOnly" value="${response.per_piece}" name="per_piece" required>
+          </div>`;
+          bid = `<div class="col-md-4">
+            <label for="exampleInputPassword1">Bid Per Bundle</label>
+            <input type="text" class="form-control numOnly" name="bid_bundle" required>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputPassword1">Bid Per Half Bundle</label>
+            <input type="text" class="form-control numOnly" name="bid_half_bundle" required>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputPassword1">Bid Per Piece</label>
+            <input type="text" class="form-control numOnly" name="bid_piece" required>
+          </div>`;
+          }else{
+            html = `<div class="col-md-4">
+            <label for="exampleInputPassword1">Price Per Sack</label>
+            <input type="text" class="form-control numOnly" value="${response.per_sack}" name="per_sack" required>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputPassword1">Price Per Half Sack</label>
+            <input type="text" class="form-control numOnly" value="${response.per_half_sack}" name="per_half_sack" required>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputPassword1">Price Per Kilogram</label>
+            <input type="text" class="form-control numOnly" value="${response.per_kilogram}" name="per_kilogram" required>
+          </div>`;
+          bid = `<div class="col-md-4">
+          <label for="exampleInputPassword1">Bid Per Sack</label>
+          <input type="text" class="form-control numOnly" name="bid_sack" required>
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputPassword1">Bid Per Half Sack</label>
+          <input type="text" class="form-control numOnly" name="bid_half_sack" required>
+        </div>
+        <div class="col-md-4">
+          <label for="exampleInputPassword1">Bid Per Kilogram</label>
+          <input type="text" class="form-control numOnly" name="bid_kilogram" required>
+        </div>`;
+          }
+    $(".priceList").html(html);
+    $(".bidding").html(bid);
+      }
+    })
+   
   });
 
   $(document).on('submit','#form_edit_items',function(e){
@@ -211,7 +282,7 @@ $(document).on('submit','#form_edit',function(e){
     format: "yyyy-mm-dd"
   });
 
-  $(document).on("change","#pricingOptions",function(){
+  $(document).on("change",".pricingOptions",function(){
     var value = $(this).val();
     var html = ``;
     var bid = ``;
@@ -275,8 +346,8 @@ $(document).on('submit','#form_edit',function(e){
     <input type="text" class="form-control numOnly" name="bid_kilogram" required>
   </div>`;
     }
-    $("#priceList").html(html);
-    $("#bidding").html(bid);
+    $(".priceList").html(html);
+    $(".bidding").html(bid);
 
   })
 
