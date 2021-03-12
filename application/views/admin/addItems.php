@@ -61,8 +61,35 @@
                     <input type="text" class="form-control" name="quantity" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Price</label>
-                    <input type="text" class="form-control" name="price" required>
+                    <label for="exampleInputPassword1">Supplier Price Cost</label>
+                    <input type="text" class="form-control" name="spc" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Pricing Options</label>
+                    <select name="options" id="pricingOptions" class="form-control">
+                          <option value="0">- Fix Price</option>
+                          <option value="1">- Per Bundle</option>
+                          <option value="2">- Per Sack/Kilo</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                  <p style="font-weight: bold" class="text-center">Set Price List</p>
+                    <div class="row" id="priceList">
+                      <div class="col-md-12">
+                          <label for="exampleInputPassword1">Price</label>
+                          <input type="text" class="form-control numOnly" name="price" required>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-group">
+                  <p style="font-weight: bold" class="text-center">Set Bidding List</p>
+                     <div class="row" id="bidding">
+                          <div class="col-md-12">
+                            <label for="exampleInputPassword1">Minimum Bidding</label>
+                            <input type="text" class="form-control numOnly" name="fix_bid" required>
+                          </div>
+                     </div>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">Item Image (Optional)</label>
