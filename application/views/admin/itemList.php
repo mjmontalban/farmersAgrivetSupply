@@ -35,7 +35,6 @@
                     <th>Item Name</th>
                     <th>Description</th>
                     <th>Quantity</th>
-                    <th>Price</th>
                     <th>Date Added</th>
                     <th>Action</th>
                   </thead>
@@ -45,14 +44,12 @@
                            <td><?php echo $value->item_name; ?></td>
                            <td><?php echo $value->description; ?></td>
                            <td><?php echo $value->quantity; ?></td>
-                           <td><?php echo $value->item_price; ?></td>
                            <td><?php echo $value->add_date; ?></td>
                            <td><button data-id="<?php echo $value->id; ?>" data-toggle="modal" 
                            data-id="<?php echo $value->id; ?>"
                            data-item="<?php echo $value->item_name; ?>"
                            data-description="<?php echo $value->description; ?>"
                            data-quantity="<?php echo $value->quantity; ?>"
-                           data-price="<?php echo $value->item_price; ?>"
                            data-target="#updateItem" id="itemButtonUpdate" class="btn btn-sm btn-primary">EDIT</button></td>
                         </tr>
                     <?php endforeach; ?>

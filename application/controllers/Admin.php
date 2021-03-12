@@ -124,7 +124,22 @@ class Admin extends MY_Controller{
               "category_id" => $post["category"],
               "description" => $post["description"],
               "quantity" => $post["quantity"],
-              "item_price" => $post["price"],
+              "pricingOption" => $post["options"],
+              "supplier_price_cost" => $post["spc"],
+              "fix_price" => isset($post["price"]) ? $post["price"] : null,
+              "per_bundle" => isset($post["per_bundle"]) ? $post["per_bundle"] : null,
+              "per_half_bundle" => isset($post["per_half_bundle"]) ? $post["per_half_bundle"] : null,
+              "per_piece" => isset($post["price"]) ? $post["per_piece"] : null,
+              "per_sack" => isset($post["per_sack"]) ? $post["per_sack"] : null,
+              "per_half_sack" => isset($post["per_half_sack"]) ? $post["per_half_sack"] : null,
+              "per_kilogram" => isset($post["per_kilogram"]) ? $post["per_kilogram"] : null,
+              "fix_bid" => isset($post["fix_bid"]) ? $post["fix_bid"] : null,
+              "bid_per_bundle" => isset($post["bid_bundle"]) ? $post["bid_bundle"] : null,
+              "bid_per_half_bundle" => isset($post["bid_half_bundle"]) ? $post["bid_half_bundle"] : null,
+              "bid_per_piece" => isset($post["bid_piece"]) ? $post["bid_piece"] : null,
+              "bid_per_sack" => isset($post["bid_sack"]) ? $post["bid_sack"] : null,
+              "bid_per_half_sack" => isset($post["bid_half_sack"]) ? $post["bid_half_sack"] : null,
+              "bid_per_kilogram" => isset($post["bid_kilogram"]) ? $post["bid_kilogram"] : null,
               "add_date" => date("Y-m-d H:i:s")
           )
         );
